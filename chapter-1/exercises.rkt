@@ -84,3 +84,16 @@ sqrt evaluation
         (else (A (- x 1) (A x (- y 1))))))
 
 (A 3 3)
+
+; fast exponentiation
+(define (square x)
+  (* x x))
+(define (fast-exp b n)
+  (cond ((= n 0) 1)
+        ((even? n) (square (fast-exp b (/ n 2))))
+        (else (* b (fast-exp b (- n 1))))))
+
+(define (even? x)
+  (= (remainder x 2) 0))
+
+(fast-exp 2 15)
